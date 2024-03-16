@@ -1,0 +1,272 @@
+#!/bin/bash
+clear
+
+BlueCyan='\e[5;36m'
+Xark='\e[0m'
+ungu='\033[0;35m'
+yellow='\e[33m'
+WhiteBe='\e[5;37m'
+GreenBe='\e[5;32m'
+BlueCyan='\e[5;36m'
+BLUE="\033[4;34m"
+BG_BLU="\033[44;1m" # BG BIRU
+Xark='\e[0m'
+GREN="\033[0;32m"
+clear
+noobtls="EJcbtFbef67SInimqs0adkdseswhEo8ftew2GXpnrJFp6MIEgjssIaHtkPv7U+/3yCvAIEGKNfFow7SQtDo7ULrAvHdFbGY6GvwPlo3UekhlBSrfAsYH2CRw7kK2DvVq2vo/1kGPo7ZhEf/X5jjnqIVEroZrWh4+//2eZTrtBsCvbF9NzlntHUcNRFaMiQ/ZJFxmcFPeFjnSnZM/Ig0VMcAWQJnfSN0bqaiRBvo/cONGK5LOFMDTStfgOTzPz/BTtFJ8vUktqUmS4DZ8/f+mJl17qDz4DQYRQ1sIGNazDR5AlBvhrVeQCAF2eO8qGGhAET12d2u6lyggBm/2aeVQk/n5+OAOzwqoUMHGxIPNmyh1ReH2H9fLzatBVGGD6eCb8kS7gwREB5qWRjFWt0nUzerLV/d5aRPT/rOGmXWI/pQ7RGCn7wT3cf9eoszA272Ghw2GQ3BAkswYXGgy7moKsBz3tnlo45KU8eEf92sBKoZ5c5ZOlPwTcp0tGuXpWpYNA2DyzHBQFxj0KQbp12z9KYC7WYZ8DF9WJa+FvwxxlyiwWB5/16Kh6kVVNNdtpNyIC2dncFx+NnuB"
+noobws="ENYAw49tydTFaYflUD6hlJlIUClvVjbCh1/YL4cC31lTzyk2/lY3SXa0+Arb7g7s23AGpXVCBcqPwm4NQAd0/DaXXkIXffKnKwNDYUuZYLXyhjR9HBdtc/X/+MMVGtm/wzlAhS+kiI37NYiwS/4Ude/4KpJKtNW+ph1PjXm5i/8YNiOAy/lBD/Q+d1SwZnKc6xhC3xGnjNlWZCstbFg58nrWMpThqAjsPkFYDCo+maQ5dewhvhbxbFC2iHXw3QDiX2PHcZNRVWfvsQ9yAn77GROwCIFWf3gMuvzoH6AMzKuMwtI3eIryNorEbcj3ie9afi7TvJVm0wPN0V25HTzVEXlKxujCbrzG/2f7rrKXTNby7HsIhg1/amT7WFn/52sUAdbTUFBgLy6/qtEcHrbM4/lXW24Qr3Ey3VN2bQqGCiggUvGeT+7dr/gLlg+o0ozYomhNFnBJT+xAGInGl75Ekv8Cv0CoRRf0q0bh4JyqdamJBBdyqn7hmATPOoQMp6SSAe95JYQsUKQyrW2zkkSvKRxzV9/DxvV2iMxypey1rScd5+ud04azQc3k9QjqaWVst5W7e51r/pI="
+function baris_panjang() {
+  echo -e "${BlueCyan} ———————————————————————————————————————${Xark}"
+}
+
+# Function to display menu
+display_menu() {
+baris_panjang
+echo -e "\e[95m          NOOBVPNS \e[0m"
+baris_panjang
+baris_panjang
+    echo "1. Install NoobzVpn-Server"
+    echo "2. Add User"
+    echo "3. Block User"
+    echo "4. Unblock User"
+    echo "5. Set Expiration"
+    echo "6. Renew Expiration"
+    echo "7. Change Password"
+    echo "8. Rename User"
+    echo "9. Remove User"
+    echo "10. Remove All Users"
+    echo "11. Info User noobs"
+    echo "12. Info all user noobs"
+    echo "13. Exit"
+baris_panjang
+}
+
+# Function to install NoobzVpn-Server
+install_noobzvpn_server() {
+    echo "Starting NoobzVpn-Server installation..."
+    # Your installation commands go here
+    echo "NoobzVpn-Server installed successfully."
+}
+
+# Function to add a new user
+add_user() {
+clear
+baris_panjang
+echo -e "\e[95m         CREATE TITLE NOOB \e[0m"
+baris_panjang
+echo
+    read -p " Username   : " username
+    read -p " Password   : " password
+    read -p " Expiry in  : " days
+    noobzvpns --add-user "$username" "$password"
+    noobzvpns --expired-user "$username" "$days"
+clear
+baris_panjang
+echo -e "\e[97;1m NOOBVPNS SERVER \e[0m"
+echo
+echo -e "\e[93;1m Username \e[0m   : $username "
+echo -e "\e[93;1m Password \e[0m   : $password "
+echo -e "\e[93;1m Expiry in\e[0m   : $days "
+echo -e "\e[93;1m Domain   \e[0m   : $(cat /etc/xray/domain) "
+echo -e "\e[92;1m Port WS  \e[0m   : 80,8880,8080 "
+echo -e "\e[92;1m Port Tls \e[0m   : 443,8443"
+echo
+baris_panjang
+echo " Link WS  : ${noobws}"
+baris_panjang
+echo " Link Tls : ${noobtls}"
+baris_panjang
+echo
+read -p "Back To Menu"
+menu
+}
+
+# Function to block a user
+block_user() {
+clear
+baris_panjang
+echo -e "\e[95m        LOCKED ACCOUNT \e[0m"
+baris_panjang
+    read -p "Enter username to block: " username
+    noobzvpns --block-user "$username"
+sleep 2
+    clear
+baris_panjang
+echo -e "\e[5;32m Successfully \e[0m"
+echo
+echo -e "\e[92;1m USERNAME : \e[93;1m $username \e[0m"
+baris_panjang
+echo
+read -p "Back To Menu"
+menu
+}
+
+# Function to unblock a user
+unblock_user() {
+clear
+baris_panjang
+echo -e "\e[95m       UNLOCK ACCOUNT \e[0m"
+baris_panjang
+    read -p "Enter username to unblock: " username
+    noobzvpns --unblock-user "$username"
+sleep 2
+    clear
+baris_panjang
+echo -e "\e[5;32m Successfully \e[0m"
+echo
+echo -e "\e[92;1m USERNAME : \e[93;1m $username \e[0m"
+baris_panjang
+echo
+read -p "Back To Menu"
+menu
+}
+
+# Function to set expiration for a user
+set_expiration() {
+clear
+baris_panjang
+echo -e "\e[95;1m         SET EXPIRY IN \e[0m"
+baris_panjang
+echo
+    read -p " Username   : " username
+    read -p " Expired in : " days
+    noobzvpns --expired-user "$username" "$days"
+sleep 2
+    clear
+baris_panjang
+echo -e "\e[5;32m Successfully \e[0m"
+echo
+echo -e "\e[92;1m USERNAME : \e[93;1m $username \e[0m"
+echo -e "\e[92;1m EXPIRY   : \e[93;1m $days \e[0m"
+baris_panjang
+echo
+read -p "Back To Menu"
+menu
+}
+
+# Function to renew expiration for a user
+renew_expiration() {
+clear
+    read -p "Enter username to renew expiration: " username
+    noobzvpns --renew-user "$username"
+sleep 2
+    clear
+baris_panjang
+echo -e "\e[5;32m Successfully \e[0m"
+echo
+echo -e "\e[92;1m USERNAME : \e[93;1m $username \e[0m"
+baris_panjang
+echo
+read -p "Back To Menu"
+menu
+}
+
+# Function to change password for a user
+change_password() {
+clear
+baris_panjang
+echo -e "\e[95m        CHANGE PASSWORD \e[0m"
+baris_panjang
+echo
+    read -p "Enter username: " username
+    read -p "Enter new password: " new_password
+    noobzvpns --password-user "$username" "$new_password"
+sleep 2
+    clear
+baris_panjang
+echo -e "\e[5;32m Successfully \e[0m"
+echo
+echo -e "\e[92;1m USERNAME : \e[93;1m $username \e[0m"
+echo -e "\e[92;1m NEW PW   : \e[93;1m $new_password\e[0m"
+baris_panjang
+echo
+read -p "Back To Menu"
+menu
+}
+
+# Function to rename a user
+rename_user() {
+clear
+baris_panjang
+echo -e "\e[95m        RENAME USER   \e[0m"
+baris_panjang
+echo
+    read -p "Enter current username: " old_username
+    read -p "Enter new username: " new_username
+    noobzvpns --rename-user "$old_username" "$new_username"
+    sleep 2
+    clear
+baris_panjang
+echo -e "\e[5;32m Successfully \e[0m"
+echo
+echo -e "\e[92;1m OLD USERNAME : \e[93;1m $old_username \e[0m"
+echo -e "\e[92;1m NEW USERNAME : \e[93;1m $new_username \e[0m"
+baris_panjang
+echo
+read -p "Back To Menu"
+menu
+}
+
+# Function to remove a user
+remove_user() {
+clear
+baris_panjang
+echo -e "\e[95m        REMOVED NOOBS \e[0m"
+baris_panjang
+echo
+    read -p "Enter username to remove: " username
+    noobzvpns --remove-user "$username"
+    sleep 2
+    clear
+baris_panjang
+echo -e "\e[5;32m Successfully \e[0m"
+echo
+echo -e "\e[92;1m USERNAME : \e[93;1m $username \e[0m"
+baris_panjang
+echo
+read -p "Back To Menu"
+menu
+}
+
+# Function to remove all users
+remove_all_users() {
+    read -p "Are you sure you want to remove all users? (yes/no): " confirm
+    if [ "$confirm" == "yes" ]; then
+        noobzvpns --remove-all-user
+    else
+        echo "Operation cancelled."
+    fi
+}
+
+# Function to get info for a user
+info_user() {
+    read -p "Enter username: " username
+    noobzvpns --info-user "$username"
+}
+
+# Function to get info for all users
+info_all_users() {
+    noobzvpns --info-all-user
+}
+
+# Main script
+while true; do
+    display_menu
+    read -p "Enter your choice: " choice
+    case $choice in
+        1) install_noobzvpn_server ;;
+        2) add_user ;;
+        3) block_user ;;
+        4) unblock_user ;;
+        5) set_expiration ;;
+        6) renew_expiration ;;
+        7) change_password ;;
+        8) rename_user ;;
+        9) remove_user ;;
+        10) remove_all_users ;;
+        11) info_user ;;
+        12) info_all_users ;;
+        13) exit ;;
+        *) echo "Invalid choice. Please enter a number between 1 and 13." ;;
+    esac
+done
